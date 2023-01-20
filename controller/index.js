@@ -1,5 +1,5 @@
-import formidable from "formidable";
-import database, { create, get, remove } from "../model/todo";
+const formidable = require('formidable');
+const { create, get, remove } = require("../model/todo");
 
 exports.create = (req, res) =>{
     const form = new formidable.IncomingForm();
@@ -26,9 +26,9 @@ exports.create = (req, res) =>{
 
 exports.read = async (req, res) =>{
     try{
-        const tasks = await get();
+        const task = await get();
         return res.json({
-           data: tasks.rows
+           data: task.rows
         });
     }catch (error){
         return res.status(400).json({
